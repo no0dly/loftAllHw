@@ -2,15 +2,15 @@ import React, { Component } from "react";
 import {
   CREATE_ORDER,
   MOVE_ORDER_TO_FARM
-} from "./../../actions/marketTypes.js";
+} from "actions/marketTypes.js";
 import { connect } from "react-redux";
-import { getMarketOrders } from "./../../reducers/market.js";
+import { getMarketOrders } from "reducers/market.js";
 import Moment from "react-moment";
 import "moment-timezone";
 import {
   createOrder,
   moveOrderToFarm
-} from "./../../actions/marketActions";
+} from "actions/marketActions";
 import "./Market.css";
 let id = 0;
 const getId = () => {

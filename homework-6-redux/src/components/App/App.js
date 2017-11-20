@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Market from "./../Market";
-import Budget from "./../Budget";
-import Farm from "./../Farm";
+import Market from "components/Market";
+import Budget from "components/Budget";
+import Farm from "components/Farm";
 import styled from "styled-components";
 import "./App.css";
 

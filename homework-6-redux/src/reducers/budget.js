@@ -1,8 +1,8 @@
 import {
   CREATE_ORDER,
   MOVE_ORDER_TO_FARM
-} from "./../actions/marketTypes.js";
-import { MOVE_ORDER_TO_CUSTOMER } from "./../actions/farmTypes.js";
+} from "actions/marketTypes.js";
+import { MOVE_ORDER_TO_CUSTOMER } from "actions/farmTypes.js";
 const budget = (
   state = {
     profit: 0,

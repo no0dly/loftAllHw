@@ -3,9 +3,9 @@ import "./Budget.css";
 import {
   CREATE_ORDER,
   MOVE_ORDER_TO_FARM
-} from "./../../actions/marketTypes.js";
+} from "actions/marketTypes.js";
 import { connect } from "react-redux";
-import { getBudget } from "./../../reducers/budget.js";
+import { getBudget } from "reducers/budget.js";
 import "./Budget.css";
 class Budget extends Component {
   render() {

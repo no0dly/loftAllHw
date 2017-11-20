@@ -1,5 +1,5 @@
-import { MOVE_ORDER_TO_FARM } from "./../actions/marketTypes.js";
-import { MOVE_ORDER_TO_CUSTOMER } from "./../actions/farmTypes.js";
+import { MOVE_ORDER_TO_FARM } from "actions/marketTypes.js";
+import { MOVE_ORDER_TO_CUSTOMER } from "actions/farmTypes.js";
 
 const farm = (
   state = {
