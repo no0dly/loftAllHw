@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { store } from "./../../index";
 import {
   CREATE_ORDER,
   MOVE_ORDER_TO_FARM
