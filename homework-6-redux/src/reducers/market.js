@@ -12,7 +12,10 @@ const market = (
     case "CREATE_ORDER":
       return {
         ...state,
-        orders: [...state.orders, action.payload]
+        orders:
+          state.orders && action.payload
+            ? [...state.orders, action.payload]
+            : []
       };
     case "MOVE_ORDER_TO_FARM":
       return {

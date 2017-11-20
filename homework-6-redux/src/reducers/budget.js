@@ -16,18 +16,27 @@ const budget = (
     case "CREATE_ORDER":
       return {
         ...state,
-        profit: state.profit + action.payload.price,
-        marketExpanse: state.marketExpanse + 20
+        profit:
+          state.profit && action.payload.price
+            ? state.profit + action.payload.price
+            : 111,
+        marketExpanse: state.marketExpanse
+          ? state.marketExpanse + 20
+          : 20
       };
     case "MOVE_ORDER_TO_FARM":
       return {
         ...state,
-        farmExpanse: state.farmExpanse + 100
+        farmExpanse: state.farmExpanse
+          ? state.farmExpanse + 100
+          : 100
       };
     case "MOVE_ORDER_TO_CUSTOMER":
       return {
         ...state,
-        deliveryExpanse: state.deliveryExpanse + 20
+        deliveryExpanse: state.deliveryExpanse
+          ? state.deliveryExpanse + 20
+          : 20
       };
     default:
       return { ...state };

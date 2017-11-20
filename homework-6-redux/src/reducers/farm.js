@@ -13,7 +13,10 @@ const farm = (
     case "MOVE_ORDER_TO_FARM":
       return {
         ...state,
-        orders: [...state.orders, action.payload]
+        orders:
+          state.orders && action.payload
+            ? [...state.orders, action.payload]
+            : []
       };
     case "MOVE_ORDER_TO_CUSTOMER":
       return {

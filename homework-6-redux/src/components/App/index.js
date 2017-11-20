@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import Market from "./../Market/Market.js";
-import Budget from "./../Budget/index.js";
-import Farm from "./../Farm/index.js";
+import Market from "./../Market";
+import Budget from "./../Budget";
+import Farm from "./../Farm";
 import styled from "styled-components";
 import "./App.css";
 
 class App extends Component {
-  state = {};
   render() {
     return (
       <div className="app">
