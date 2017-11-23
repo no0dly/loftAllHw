@@ -6,12 +6,13 @@ import {
 import { search } from "api.js";
 export default store => next => action => {
   if (action.type == searchRequest.toString()) {
-    console.log("searchMiddleware принял экшен");
-    // search(action.payload).then(shows =>
-    //   store.dispatch(
-    //     search_success(shows.map(show => show.show))
-    //   )
-    // );
+    search(action.payload)
+      .then(shows =>
+        store.dispatch(
+          search_success(shows.map(show => show.show))
+        )
+      )
+      .catch(err => store.dispatch(search_failure(err)));
   }
   return next(action);
 };

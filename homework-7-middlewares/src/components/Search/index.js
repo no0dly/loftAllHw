@@ -5,11 +5,8 @@ import {
   getIsFetching,
   getError
 } from "reducers/search.js";
-import {
-  searchRequest,
-  search_success,
-  search_failure
-} from "actions/index.js";
+import { searchRequest } from "actions/index.js";
+import { Link } from "react-router-dom";
 class Search extends Component {
   state = {
     name: ""
@@ -18,20 +15,37 @@ class Search extends Component {
     this.setState({ name: event.target.value });
   };
   handleSubmit = () => {
-    console.log("click");
     const { searchRequest } = this.props;
-    console.log(searchRequest(this.state.name));
     searchRequest(this.state.name);
   };
   render() {
+    const { isFetching, result } = this.props;
+    const items = result.map(item => (
+      <div className="item">
+        <Link to={`/shows/${item.id}`}>{item.name}</Link>
+        <img src={item.image ? item.image.medium : null} />
+        <div
+          dangerouslySetInnerHTML={{ __html: item.summary }}
+        />
+      </div>
+    ));
     return (
       <div>
-        <input
-          onChange={this.handleChange}
-          placeholder="Название сериала"
-          type="text"
-        />
-        <button onClick={this.handleSubmit}>Найти</button>
+        {!isFetching ? (
+          <div>
+            <input
+              onChange={this.handleChange}
+              placeholder="Название сериала"
+              type="text"
+            />
+            <button onClick={this.handleSubmit}>
+              Найти
+            </button>
+            {items}
+          </div>
+        ) : (
+          <p>Идет загрузка</p>
+        )}
       </div>
     );
   }

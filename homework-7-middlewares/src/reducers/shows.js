@@ -15,7 +15,7 @@ const isFetching = handleActions(
 );
 const entities = handleAction(
   shows_success,
-  (state, action) => [...state, action.payload],
+  (state, action) => action.payload,
   []
 );
 
@@ -30,6 +30,7 @@ export default combineReducers({
   isFetching,
   error
 });
-export const getEntities = state => state.episodes;
-export const getIsFetching = state => state.isFetching;
-export const getError = state => state.error;
+export const getEntities = state => state.shows.entities;
+export const getIsFetching = state =>
+  state.shows.isFetching;
+export const getError = state => state.shows.error;

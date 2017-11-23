@@ -1,4 +1,4 @@
-import { createAction, createActions } from "redux-actions";
+import { createActions } from "redux-actions";
 
 const actionCreators = createActions(
   {
@@ -23,7 +23,3 @@ export const search_failure = actionCreators.search.failure;
 export const shows_request = actionCreators.shows.request;
 export const shows_success = actionCreators.shows.success;
 export const shows_failure = actionCreators.shows.failure;
-
-console.log(searchRequest()); // APP/COUNTER/INCREMENT
-console.log(search_success.toString()); // APP/COUNTER/DECREMENT
-console.log(search_failure.toString()); // APP/COUNTER/SET

@@ -7,6 +7,10 @@ import { show } from "api.js";
 
 export default store => next => action => {
   if (action.type == shows_request.toString()) {
-    show();
+    console.log("мидл вар принял");
+    show(action.payload)
+      .then(res => store.dispatch(shows_success(res)))
+      .catch(err => store.dispatch(shows_failure(err)));
   }
+  return next(action);
 };
