@@ -9,7 +9,7 @@ import {
   searchRequest,
   search_success,
   search_failure
-} from "components/actions/index.js";
+} from "actions/index.js";
 class Search extends Component {
   state = {
     name: ""

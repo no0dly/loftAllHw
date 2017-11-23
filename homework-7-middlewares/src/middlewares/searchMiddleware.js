@@ -2,7 +2,7 @@ import {
   searchRequest,
   search_success,
   search_failure
-} from "components/actions/index.js";
+} from "actions/index.js";
 import { search } from "api.js";
 export default store => next => action => {
   if (action.type == searchRequest.toString()) {

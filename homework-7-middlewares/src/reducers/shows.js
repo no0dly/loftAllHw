@@ -2,7 +2,7 @@ import {
   shows_request,
   shows_success,
   shows_failure
-} from "components/actions/index.js";
+} from "actions/index.js";
 import { combineReducers } from "redux";
 import { handleAction, handleActions } from "redux-actions";
 const isFetching = handleActions(
