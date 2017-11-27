@@ -16,7 +16,7 @@ class UserPage extends Component {
   componentDidMount() {
     const { fetchUserDataRequest } = this.props;
     const userName = this.props.match.params.name;
-
+    console.log(this.props.match);
     fetchUserDataRequest(userName);
   }
   componentWillReceiveProps(nextProps) {
