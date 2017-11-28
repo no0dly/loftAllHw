@@ -1,24 +1,21 @@
-import React from "react";
-import { connect } from "react-redux";
+import React, { PureComponent } from "react";
 import { Route, Redirect } from "react-router-dom";
-
+import { connect } from "react-redux";
 import { getToken } from "../../reducers/auth";
 
-const PrivateRoute = ({ component: Component, token, path, ...rest }) => {
-  debugger;
-  return (
-    <Route
-      {...rest}
-      render={props => {
-        return token ? <Component {...props} /> : <Redirect to="/login" />;
-      }}
-    />
-  );
-};
+class PrivateRoute extends PureComponent {
+  render() {
+    const { token, component: Component, ...rest } = this.props;
 
-const mapStateToProps = state => {
-  console.log(getToken(state));
-  return { token: getToken(state) };
-};
+    return (
+      <Route
+        {...rest}
+        render={props =>
+          token ? <Component {...props} /> : <Redirect to="/login" />
+        }
+      />
+    );
+  }
+}
 
-export default connect(mapStateToProps, null)(PrivateRoute);
+export default connect(state => ({ token: getToken(state) }))(PrivateRoute);

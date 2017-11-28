@@ -12,15 +12,17 @@ import {
   getUserPubReposCount
 } from "../../reducers/users";
 
-class UserPage extends Component {
+export class UserPage extends Component {
   componentDidMount() {
     const { fetchUserDataRequest } = this.props;
     const userName = this.props.match.params.name;
-    console.log(this.props.match);
     fetchUserDataRequest(userName);
   }
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
+    const userName = this.props.match.params.name;
+    if (nextProps.match.params.name !== this.props.match.params.name) {
+      fetchUserDataRequest(userName);
+    }
   }
   render() {
     const {

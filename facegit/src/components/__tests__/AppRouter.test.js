@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import { AppRouter } from "../AppRouter";
+import AppRouter from "../AppRouter";
 import PrivateRoute from "../PrivateRoute";
 import AuthPage from "../AuthPage";
 import UserPage from "../UserPage";
@@ -9,6 +9,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 
 describe("AppRouter tests", () => {
   const wrapper = shallow(<AppRouter />);
+
   it("Does Switch element exist", () => {
     expect(wrapper.find(Switch)).toHaveLength(1);
   });
@@ -19,7 +20,9 @@ describe("AppRouter tests", () => {
   });
   it("Does Login Route exist", () => {
     expect(
-      wrapper.contains(<Route path="/login" component={AuthPage} />)
+      wrapper.contains(
+        <Route path="/login" exact={true} component={AuthPage} />
+      )
     ).toBeTruthy();
   });
   it("Does Redirect to /user/dex157 exist", () => {

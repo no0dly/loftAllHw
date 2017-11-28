@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setToken } from "../../actions/auth";
 
-class AuthPage extends Component {
+export class AuthPage extends Component {
   state = {
     queryText: ""
   };

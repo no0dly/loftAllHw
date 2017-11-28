@@ -5,7 +5,7 @@ import AuthPage from "../AuthPage";
 import UserPage from "../UserPage";
 import PrivateRoute from "../PrivateRoute";
 
-export class AppRouter extends Component {
+class AppRouter extends Component {
   render() {
     return (
       <Switch>
