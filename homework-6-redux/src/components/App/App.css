@@ -1,0 +1,11 @@
+.app {
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  flex-wrap: wrap;
+  align-self: flex-start;
+  align-items: flex-start;
+}
+h1 {
+  font-size: 22px;
+}
