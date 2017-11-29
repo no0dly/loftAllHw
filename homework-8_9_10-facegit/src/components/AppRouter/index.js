@@ -15,8 +15,8 @@ class AppRouter extends Component {
             path="/user/:name"
             component={UserPage}
           />
-          <Redirect from="/login" to="/user/dex157" />
-          <Route path="/login" component={AuthPage} />
+          <Route path="/login" exact component={AuthPage} />
+          <Redirect to="/user/dex157" />
         </Switch>
       </div>
     );
