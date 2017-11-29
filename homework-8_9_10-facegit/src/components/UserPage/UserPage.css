@@ -1,0 +1,20 @@
+.error-block {
+  color: #ff0000;
+}
+.user-img {
+  width: 300px;
+  height: 300px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+.user {
+  width: 457px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+}
+.user-info {
+  margin-top: 20px;
+}
