@@ -1,8 +1,7 @@
 import React, { PureComponent } from "react";
 import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { getToken } from "../../reducers/auth";
-
+import { getToken } from "reducers/auth";
 class PrivateRoute extends PureComponent {
   render() {
     const {

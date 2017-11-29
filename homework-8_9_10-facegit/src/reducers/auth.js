@@ -3,7 +3,7 @@ import { handleAction, handleActions } from "redux-actions";
 import { combineReducers } from "redux";
 
 const token = handleAction(
-  setToken,
+  authorize,
   (state, action) => action.payload,
   null
 );

@@ -7,27 +7,21 @@ import Followers from "components/Followers";
 import "./UserPage.css";
 class UserPage extends Component {
   componentDidMount() {
-    const { fetchLoginRequest } = this.props;
-    fetchLoginRequest();
+    // const { fetchLoginRequest } = this.props;
+    // fetchLoginRequest();
   }
   render() {
-    const { login } = this.props;
+    // const { login } = this.props;
     return (
       <div>
-        <Followers login={login} />
+        <Followers />
       </div>
     );
   }
 }
 const mapStateToProps = state => ({
-  login: getLogin(state),
   auth: {
     token: getToken(state)
   }
 });
-const mapDispatchToProps = {
-  fetchLoginRequest
-};
-export default connect(mapStateToProps, mapDispatchToProps)(
-  UserPage
-);
+export default UserPage;
