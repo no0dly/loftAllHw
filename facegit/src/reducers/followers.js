@@ -3,7 +3,8 @@ import { handleActions } from "redux-actions";
 import {
   fetchFollowersRequest,
   fetchFollowersSuccess,
-  fetchFollowersFailure
+  fetchFollowersFailure,
+  clearFollowersData
 } from "../actions/followers";
 
 const isFetching = handleActions(
@@ -25,7 +26,8 @@ const isFetched = handleActions(
 
 const data = handleActions(
   {
-    [fetchFollowersSuccess]: (state, action) => action.payload
+    [fetchFollowersSuccess]: (state, action) => action.payload,
+    [clearFollowersData]: () => []
   },
   []
 );

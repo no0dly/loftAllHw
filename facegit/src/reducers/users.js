@@ -3,7 +3,8 @@ import { handleActions } from "redux-actions";
 import {
   fetchUserDataRequest,
   fetchUserDataSuccess,
-  fetchUserDataFailure
+  fetchUserDataFailure,
+  clearUserData
 } from "../actions/users";
 
 const isFetching = handleActions(
@@ -25,9 +26,10 @@ const isFetched = handleActions(
 
 const data = handleActions(
   {
-    [fetchUserDataSuccess]: (state, action) => action.payload
+    [fetchUserDataSuccess]: (state, action) => action.payload,
+    [clearUserData]: () => ({})
   },
-  []
+  {}
 );
 
 const error = handleActions(
@@ -44,3 +46,6 @@ export const getUserName = state => state.users.data.name;
 export const getUserNickname = state => state.users.data.login;
 export const getUserFollowersCount = state => state.users.data.followers;
 export const getUserPubReposCount = state => state.users.data.public_repos;
+export const getIsFetching = state => state.users.isFetching;
+export const getIsFetched = state => state.users.isFetched;
+export const getError = state => state.users.error;

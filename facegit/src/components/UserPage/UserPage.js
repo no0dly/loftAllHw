@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Spinner from "react-svg-spinner";
 
 import Followers from "../Followers";
 
@@ -9,7 +10,10 @@ import {
   getUserName,
   getUserNickname,
   getUserFollowersCount,
-  getUserPubReposCount
+  getUserPubReposCount,
+  getIsFetching,
+  getIsFetched,
+  getError
 } from "../../reducers/users";
 
 export class UserPage extends Component {
@@ -20,45 +24,60 @@ export class UserPage extends Component {
   }
   componentWillReceiveProps(nextProps) {
     const userName = this.props.match.params.name;
-    if (nextProps.match.params.name !== this.props.match.params.name) {
-      fetchUserDataRequest(userName);
+    const newUserName = nextProps.match.params.name;
+    const { fetchUserDataRequest } = this.props;
+    if (newUserName !== userName) {
+      fetchUserDataRequest(newUserName);
     }
   }
-  render() {
+  renderContent = () => {
     const {
       userImage,
       userName,
       userNickname,
       userFollowersCount,
-      userPubReposCount
+      userPubReposCount,
+      isFetching,
+      isFetched,
+      error
     } = this.props;
-    return (
-      <div className="columns is-centered">
-        <div className="column is-3">
-          <div className="card">
-            <div className="card-content">
-              <div className="media">
-                <div className="media-left">
-                  <figure className="image is-48x48">
-                    <img src={userImage} alt="Avatar" />
-                  </figure>
-                </div>
-                <div className="media-content">
-                  <p className="title is-4">{userName}</p>
-                  <p className="subtitle is-6">{userNickname}</p>
-                </div>
+    if (isFetching) {
+      return <Spinner size="64px" color="fuchsia" gap={5} />;
+    } else if (!isFetching && isFetched && !userName) {
+      return <p className="error">there is no user with this name</p>;
+    } else if (!isFetching && isFetched && userName) {
+      return (
+        <div className="card">
+          <div className="card-content">
+            <div className="media">
+              <div className="media-left">
+                <figure className="image is-48x48">
+                  <img src={userImage} alt="Avatar" />
+                </figure>
               </div>
-
-              <div className="content">
-                <ul>
-                  <li>Followers: {userFollowersCount}</li>
-                  <li>Repos: {userPubReposCount}</li>
-                </ul>
-                <Followers />
+              <div className="media-content">
+                <p className="title is-4">{userName}</p>
+                <p className="subtitle is-6">{userNickname}</p>
               </div>
+            </div>
+            <div className="content">
+              <ul>
+                <li>Followers: {userFollowersCount}</li>
+                <li>Repos: {userPubReposCount}</li>
+              </ul>
+              <Followers />
             </div>
           </div>
         </div>
+      );
+    } else if (error) {
+      return <p>{error}</p>;
+    }
+  };
+  render() {
+    return (
+      <div className="columns is-centered">
+        <div className="column is-4">{this.renderContent()}</div>
       </div>
     );
   }
@@ -70,7 +89,10 @@ const mapStateToProps = state => {
     userName: getUserName(state),
     userNickname: getUserNickname(state),
     userFollowersCount: getUserFollowersCount(state),
-    userPubReposCount: getUserPubReposCount(state)
+    userPubReposCount: getUserPubReposCount(state),
+    isFetching: getIsFetching(state),
+    isFetched: getIsFetched(state),
+    error: getError(state)
   };
 };
 

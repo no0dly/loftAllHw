@@ -1,22 +1,34 @@
 import React from "react";
 
 import { UserPage } from "../UserPage/UserPage";
-
-import { shallow, mount } from "enzyme";
-import { StaticRouter } from "react-router-dom";
+import Spinner from "react-svg-spinner";
+import { shallow } from "enzyme";
 
 describe("UserPage", () => {
-  const context = {};
   const wrapper = shallow(
-    <StaticRouter context={context}>
-      <UserPage />
-    </StaticRouter>
+    <UserPage
+      match={{
+        params: {
+          name: "test"
+        }
+      }}
+      fetchUserDataRequest={jest.fn()}
+    />
   );
-  console.log(wrapper.debug());
   it("UserPage exists", () => {
     expect(wrapper.exists()).toBeTruthy();
   });
   it("Is there componentDidMount", () => {
     expect(wrapper.instance().componentDidMount).toBeDefined();
+  });
+  it("Should show spinner when user data is fetching", () => {
+    expect(wrapper.setProps({ isFetching: true }).find(Spinner)).toHaveLength(
+      1
+    );
+  });
+  it("Should show error with no username", () => {
+    expect(
+      wrapper.setProps({ isFetching: false, isFetched: true }).find("p.error")
+    ).toHaveLength(1);
   });
 });

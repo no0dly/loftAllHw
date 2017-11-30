@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { setToken } from "../../actions/auth";
+import { authorize } from "../../actions/auth";
+import { getToken } from "../../reducers/auth";
 
 export class AuthPage extends Component {
   state = {
@@ -11,15 +13,17 @@ export class AuthPage extends Component {
   };
   onKeyDownHandler = e => {
     const { queryText } = this.state;
-    const { setToken } = this.props;
+    const { authorize } = this.props;
     if (e.keyCode === 13) {
-      setToken(queryText);
+      authorize(queryText);
     }
   };
   render() {
+    const { token } = this.props;
     const { queryText } = this.state;
     return (
       <div className="columns is-centered">
+        {token && <Redirect to="/" />}
         <div className="column is-4">
           <div className="field">
             <label className="label">Enter your token</label>
@@ -43,8 +47,12 @@ export class AuthPage extends Component {
   }
 }
 
-const mapDispatchToProps = {
-  setToken
+const mapStateToProps = state => {
+  return { token: getToken(state) };
 };
 
-export default connect(null, mapDispatchToProps)(AuthPage);
+const mapDispatchToProps = {
+  authorize
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AuthPage);
