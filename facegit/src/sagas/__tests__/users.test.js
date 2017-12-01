@@ -1,7 +1,6 @@
 import {
   fetchUserDataSuccess,
-  fetchUserDataFailure,
-  clearUserData
+  fetchUserDataFailure
 } from "../../actions/users";
 import { fetchFollowersRequest } from "../../actions/followers";
 import { call, put } from "redux-saga/effects";
@@ -22,11 +21,8 @@ describe("Saga users:", () => {
   it("call getUserInformation", () => {
     expect(saga.next().value).toEqual(call(getUserInformation, "test_login"));
   });
-  it("dispatch actions after success call (clearUserData)", () => {
-    expect(saga.next(user).value).toEqual(put(clearUserData()));
-  });
   it("dispatch action fetchUserDataSuccess with user from call on success call", () => {
-    expect(saga.next().value).toEqual(put(fetchUserDataSuccess(user.data)));
+    expect(saga.next(user).value).toEqual(put(fetchUserDataSuccess(user.data)));
   });
   it("dispatch action fetchFollowersRequest", () => {
     expect(saga.next().value).toEqual(

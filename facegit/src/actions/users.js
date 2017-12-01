@@ -3,11 +3,9 @@ import { createActions } from "redux-actions";
 export const {
   fetchUserDataRequest,
   fetchUserDataSuccess,
-  fetchUserDataFailure,
-  clearUserData
+  fetchUserDataFailure
 } = createActions({
   FETCH_USER_DATA_REQUEST: undefined,
   FETCH_USER_DATA_SUCCESS: undefined,
-  FETCH_USER_DATA_FAILURE: undefined,
-  CLEAR_USER_DATA: undefined
+  FETCH_USER_DATA_FAILURE: undefined
 });

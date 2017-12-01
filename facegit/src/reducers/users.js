@@ -3,8 +3,7 @@ import { handleActions } from "redux-actions";
 import {
   fetchUserDataRequest,
   fetchUserDataSuccess,
-  fetchUserDataFailure,
-  clearUserData
+  fetchUserDataFailure
 } from "../actions/users";
 
 const isFetching = handleActions(
@@ -27,14 +26,16 @@ const isFetched = handleActions(
 const data = handleActions(
   {
     [fetchUserDataSuccess]: (state, action) => action.payload,
-    [clearUserData]: () => ({})
+    [fetchUserDataRequest]: () => ({})
   },
   {}
 );
 
 const error = handleActions(
   {
-    [fetchUserDataFailure]: (state, action) => action.payload
+    [fetchUserDataFailure]: (state, action) => action.payload,
+    [fetchUserDataRequest]: () => null,
+    [fetchUserDataSuccess]: () => null
   },
   null
 );
