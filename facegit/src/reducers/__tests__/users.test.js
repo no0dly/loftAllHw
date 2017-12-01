@@ -1,4 +1,3 @@
-import React from "react";
 import users from "../users";
 import {
   fetchUserDataRequest,

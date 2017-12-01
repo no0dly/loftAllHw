@@ -65,7 +65,7 @@ export class UserPage extends Component {
                 <li>Followers: {userFollowersCount}</li>
                 <li>Repos: {userPubReposCount}</li>
               </ul>
-              <Followers />
+              <Followers login={userNickname} />
             </div>
           </div>
         </div>

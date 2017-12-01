@@ -3,8 +3,7 @@ import { handleActions } from "redux-actions";
 import {
   fetchFollowersRequest,
   fetchFollowersSuccess,
-  fetchFollowersFailure,
-  clearFollowersData
+  fetchFollowersFailure
 } from "../actions/followers";
 
 const isFetching = handleActions(
@@ -27,14 +26,16 @@ const isFetched = handleActions(
 const data = handleActions(
   {
     [fetchFollowersSuccess]: (state, action) => action.payload,
-    [clearFollowersData]: () => []
+    [fetchFollowersRequest]: () => []
   },
   []
 );
 
 const error = handleActions(
   {
-    [fetchFollowersFailure]: (state, action) => action.payload
+    [fetchFollowersFailure]: (state, action) => action.payload,
+    [fetchFollowersRequest]: () => null,
+    [fetchFollowersSuccess]: () => null
   },
   null
 );
@@ -42,4 +43,6 @@ const error = handleActions(
 export default combineReducers({ isFetching, isFetched, error, data });
 
 export const getUserFollowers = state => state.followers.data;
-export const getUserName = state => state.users.data.login;
+export const getIsFetching = state => state.followers.isFetching;
+export const getIsFetched = state => state.followers.isFetched;
+export const getError = state => state.followers.error;

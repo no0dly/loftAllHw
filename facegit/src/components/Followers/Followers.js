@@ -1,16 +1,34 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Spinner from "react-svg-spinner";
 
-import { getUserFollowers } from "../../reducers/followers";
+import { fetchFollowersRequest } from "../../actions/followers";
+import {
+  getUserFollowers,
+  getIsFetched,
+  getIsFetching,
+  getError
+} from "../../reducers/followers";
 
 import Follower from "../Follower";
 
 class Followers extends Component {
+  componentDidMount() {
+    const { fetchFollowersRequest, login } = this.props;
+
+    fetchFollowersRequest(login);
+  }
   renderFollowers = () => {
-    const { followers } = this.props;
-    return followers.map(follower => {
-      return <Follower key={follower.id} {...follower} />;
-    });
+    const { followers, isFetched, isFetching, error } = this.props;
+    if (isFetching) {
+      return <Spinner height="32px" width="32px" />;
+    } else if (followers && isFetched) {
+      return followers.map(follower => {
+        return <Follower key={follower.id} {...follower} />;
+      });
+    } else if (error) {
+      return <p>{error}</p>;
+    }
   };
   render() {
     return <div className="columns is-multiline">{this.renderFollowers()}</div>;
@@ -18,7 +36,16 @@ class Followers extends Component {
 }
 
 const mapStateToProps = state => {
-  return { followers: getUserFollowers(state) };
+  return {
+    followers: getUserFollowers(state),
+    isFetched: getIsFetched(state),
+    isFetching: getIsFetching(state),
+    error: getError(state)
+  };
 };
 
-export default connect(mapStateToProps, null)(Followers);
+const mapDispatchToProps = {
+  fetchFollowersRequest
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Followers);
