@@ -7,7 +7,7 @@ import {
 
 import { getUserFollowers } from "../api";
 
-function* fetchFollowersRequestSaga(action) {
+export function* fetchFollowersRequestSaga(action) {
   try {
     const followers = yield call(getUserFollowers, action.payload);
     yield put(fetchFollowersSuccess(followers.data));

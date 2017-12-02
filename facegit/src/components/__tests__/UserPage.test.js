@@ -1,6 +1,7 @@
 import React from "react";
 
 import { UserPage } from "../UserPage/UserPage";
+import Followers from "../Followers/Followers";
 import Spinner from "react-svg-spinner";
 import { shallow } from "enzyme";
 
@@ -30,5 +31,14 @@ describe("UserPage", () => {
     expect(
       wrapper.setProps({ isFetching: false, isFetched: true }).find("p.error")
     ).toHaveLength(1);
+  });
+  it("Should should have Followers component with login prop", () => {
+    wrapper.setProps({
+      isFetching: false,
+      isFetched: true,
+      userNickname: "test",
+      userName: "some name"
+    });
+    expect(wrapper.find(Followers).prop("login")).toEqual("test");
   });
 });

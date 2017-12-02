@@ -25,7 +25,7 @@ describe("AppRouter tests", () => {
       )
     ).toBeTruthy();
   });
-  it("Does Redirect to /user/dex157 exist", () => {
-    expect(wrapper.contains(<Redirect to="/user/dex157" />)).toBeTruthy();
+  it("Does Redirect to /user/userName exist", () => {
+    expect(wrapper.contains(<Redirect to={`/user/undefined`} />)).toBeTruthy();
   });
 });

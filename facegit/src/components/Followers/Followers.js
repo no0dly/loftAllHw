@@ -12,7 +12,7 @@ import {
 
 import Follower from "../Follower";
 
-class Followers extends Component {
+export class Followers extends Component {
   componentDidMount() {
     const { fetchFollowersRequest, login } = this.props;
 
