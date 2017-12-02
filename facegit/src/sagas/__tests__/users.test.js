@@ -2,7 +2,6 @@ import {
   fetchUserDataSuccess,
   fetchUserDataFailure
 } from "../../actions/users";
-import { fetchFollowersRequest } from "../../actions/followers";
 import { call, put } from "redux-saga/effects";
 import { fetchUserDataRequestSaga } from "../users";
 import { getUserInformation } from "../../api";
