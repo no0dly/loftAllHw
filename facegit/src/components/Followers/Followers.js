@@ -24,7 +24,9 @@ export class Followers extends Component {
       return <Spinner height="32px" width="32px" />;
     } else if (followers && isFetched) {
       return followers.map(follower => {
-        return <Follower key={follower.id} {...follower} />;
+        return (
+          <Follower key={follower.id} login={follower.login} {...follower} />
+        );
       });
     } else if (error) {
       return <p>{error}</p>;
